@@ -55,7 +55,7 @@ async def get_user(name: str):
     cur = db_con.cursor()
 
 
-    q = "SELECT * FROM users WHERE name=?"
+    q = "SELECT id, name FROM users WHERE name=?"
     cur.execute(q,(name,))
     res = cur.fetchall()
     return res
@@ -94,7 +94,7 @@ async def get_feed():
 @app.get("/all_data")
 async def all_data(filter_text: str = "", _: None = Depends(require_admin)):
     cur = db_con.cursor()
-    cur.execute("SELECT * FROM users")
+    cur.execute("SELECT id, name,email, is_admin FROM users")
     big_data = cur.fetchall()
     
     filtered = []
