@@ -7,8 +7,9 @@ import uvicorn
 from pydantic import BaseModel, Field
 
 ADMIN_API_KEY = os.environ.get("ADMIN_API_KEY")
+DB_PATH = os.environ.get("DB_PATH", "mulakat.db")
 
-db_con = sqlite3.connect('mulakat.db', check_same_thread=False)
+db_con = sqlite3.connect(DB_PATH, check_same_thread=False)
 
 
 def init_db():
